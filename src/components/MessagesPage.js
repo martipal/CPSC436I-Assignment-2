@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MessageForm from './MessageForm';
 import MessageList from './MessageList';
 
@@ -33,7 +33,6 @@ export default class MessagesPage extends React.Component {
         } else {
             this.setState({ scrollingMessages: true });
         }
-        console.log(this.state.scrollingMessages);
     }
 
     render() {
