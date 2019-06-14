@@ -1,22 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Messages from './Messages';
-
-const startingSize = 100;
+import { addMessage } from '../actions';
 
 class MessageList extends React.Component {
-   
-    constructor(){
-        super();
-        
+
+    constructor(props) {
+        super(props);
+    }
+
+    callAPI() {
+        fetch("http://localhost:9000/messages", {
+            headers: {
+                'Content-Type':'application/json',
+                'Accept':'application/json'
+            }
+        }).then(response => response.json()).then(data => {
+            console.log(data);
+            for (let i = data.length-1; i >=0; i--){
+                this.props.addMessage(data[i].message);
+            }
+        });
+    }
+
+    componentWillMount(){
+        this.callAPI();
     }
 
     render() {
-        const header =(<h3> Message Log</h3>);
+        const header = (<h3> Message Log</h3>);
         return (<div>
             {header}
             <ul>
-                <Messages messages={this.props.messages} numberOfMessages={this.props.numberOfMessages} moveMessages={this.props.scrollingMessages}/>
+                <Messages messages={this.props.messages} numberOfMessages={this.props.numberOfMessages} moveMessages={this.props.scrollingMessages} />
             </ul>
         </div>)
     }
@@ -28,4 +44,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(MessageList);
+export default connect(mapStateToProps, { addMessage })(MessageList);

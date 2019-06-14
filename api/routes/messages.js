@@ -15,9 +15,18 @@ var messages =[
 ];
 
 /* GET messages listing. */
-router.get('/', function(req,res,next){
+router.get('/', function(req,res){
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(messages));
 });
+
+/* POST a message. */ 
+router.post('/', function(req,res,next){
+    const newMessage = req.body;
+    messages.unshift(newMessage);
+    res.setHeader('Content-Type', 'application/json');
+    res.send(newMessage);
+});
+
 
 module.exports = router;

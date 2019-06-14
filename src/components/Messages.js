@@ -1,6 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import { createIFrame } from '../actions';
 
 export default class Messages extends React.Component {
 
@@ -10,13 +8,6 @@ export default class Messages extends React.Component {
             showPopUp: false
         };
     }
-
-    createAndStoreIFrame(message){
-        let url =("//" + "google.com/search?q=" + message.toString(), '_blank');
-        this.props.createIFrame(message.toString());
-        
-    }
-
 
     render(){
         const { messages } = this.props;

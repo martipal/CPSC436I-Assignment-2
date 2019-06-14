@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { clearMessages, addMessage } from '../actions';
+import { addMessage } from '../actions';
 
 class MessageForm extends React.Component{
     constructor(){
@@ -10,7 +10,9 @@ class MessageForm extends React.Component{
 
     handleSubmit (event){
         event.preventDefault();
-        this.props.addMessage(event.target.text.value.toString());
+        let newMessage = event.target.text.value.toString();
+        sendMessageWithPOST(newMessage);
+        reload();
     }
 
     render(){
@@ -32,11 +34,27 @@ class MessageForm extends React.Component{
 
 }
 
+function reload(){
+    window.location.reload();
+}
+
 const mapStateToProps = (state) => {
     return {
         messages: state.messages
     }
 }
 
+function sendMessageWithPOST(newMessage){
+    const options = {
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({"message":newMessage})
+    };
 
-export default connect(mapStateToProps, {addMessage, clearMessages})(MessageForm);
+    fetch("http://localhost:9000/messages",options);
+}
+
+
+export default connect(mapStateToProps, {addMessage})(MessageForm);

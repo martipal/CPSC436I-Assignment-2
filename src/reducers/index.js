@@ -1,15 +1,6 @@
 import { combineReducers } from 'redux';
 
-let defaults = ["Most recently added message",
-"best beaches in vancouver",
-"Where to go camping?",
-"Indonesia", 
-"Hello!",
-"Learn React",
-"Yes",
-"@#()!",
-"12345",
-"Oldest message"];
+let defaults = [];
 
 const messagesReducer = (messages= defaults, action) => {
     if (action.type === "CLEAR_MESSAGES"){

@@ -2,10 +2,6 @@ import React from 'react';
 import MessageForm from './MessageForm';
 import MessageList from './MessageList';
 
-let NUMBER_OF_MESSAGES = 10;
-
-let scrollingMessages = true;
-
 export default class MessagesPage extends React.Component {
 
     constructor() {
