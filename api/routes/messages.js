@@ -28,5 +28,11 @@ router.post('/', function(req,res,next){
     res.send(newMessage);
 });
 
+/* CLEAR messages */
+router.post('/clearAll', function(req,res,next){
+    messages=[];
+});
+
+
 
 module.exports = router;

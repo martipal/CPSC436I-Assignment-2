@@ -27,11 +27,19 @@ class MessageForm extends React.Component{
         <input id="add" type="submit" value="Submit" />
         <input type="reset" className="button_stuff" value="Clear Form" />
       </form>
-      <button id="clear_button" className="button_stuff" onClick={() => {this.props.clearMessages(); return false;}}>Clear Message Log
+      <button id="clear_button" className="button_stuff" onClick={clearMessages()}>Clear Message Log
         </button>
     </div>);
     }
 
+}
+
+function clearMessages(){
+    const options = {
+        method:'POST'
+    };
+
+    fetch("http://localhost:9000/messages/clearAll",options);
 }
 
 function reload(){
