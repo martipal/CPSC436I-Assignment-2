@@ -31,7 +31,7 @@ class MessageList extends React.Component {
         const header = (<h3> Message Log</h3>);
         return (<div>
             {header}
-            <ul>
+            <ul className ="message_list">
                 <Messages messages={this.props.messages} numberOfMessages={this.props.numberOfMessages} moveMessages={this.props.scrollingMessages} />
             </ul>
         </div>)

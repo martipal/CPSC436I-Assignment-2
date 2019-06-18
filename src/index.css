@@ -19,6 +19,38 @@ h2{
   background-color:white;
 }
 
+.message_list{
+  overflow:scroll;
+  overflow-x:visible;
+  height:300px;
+  animation: fadeIn 0.5s linear;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    top: 100px;
+  }
+  50%{
+    opacity: 0.2;
+    top: 30px;
+  }
+  75% {
+    opacity: 0.5;
+    top: 70px;
+  }
+  100% {
+    opacity: 1;
+    top:0px;
+  }
+}
+
+
+.message_list::-webkit-scrollbar { 
+  display: none; 
+}
+
 .nav_button:hover{
   background-color: black;
   color:white;
@@ -47,6 +79,10 @@ hr{
   background-color: black;
   color: white;
   padding:3;
+}
+
+.clear_button{
+  margin-top:8px;
 }
 
 #add{

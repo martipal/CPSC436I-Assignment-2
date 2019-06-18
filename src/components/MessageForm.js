@@ -18,17 +18,19 @@ class MessageForm extends React.Component{
     render(){
         return (
             <div>
-      <form id="form" onSubmit={this.handleSubmit}>
-        <label>
+      <form className =".form-horizontal" onSubmit={this.handleSubmit}>
+        <label className =".control-label">
             
-          <input id="input_field" ref={input => this.inputField=input} name="text" type="text" defaultValue="Insert Message Here..." onFocus = {() => this.inputField.value=""}/>
+          <input className="input_field" ref={input => this.inputField=input} name="text" type="text" defaultValue="Insert Message Here..." onFocus = {() => this.inputField.value=""}/>
         </label>
         <br />
-        <input id="add" type="submit" value="Submit" />
-        <input type="reset" className="button_stuff" value="Clear Form" />
+        <input className="btn btn-secondary btn-sm btn-block" type="submit" value="Submit" />
+        <input type="reset"  className="btn btn-secondary btn-sm btn-block" value="Clear Form" />
       </form>
-      <button id="clear_button" className="button_stuff" onClick={clearMessages()}>Clear Message Log
+      <div className = "clear_button">
+      <button className="btn btn-secondary btn-sm btn-block" onClick={() => clearMessages()}>Clear Message Log
         </button>
+      </div>
     </div>);
     }
 
@@ -40,6 +42,7 @@ function clearMessages(){
     };
 
     fetch("http://localhost:9000/messages/clearAll",options);
+    reload();
 }
 
 function reload(){

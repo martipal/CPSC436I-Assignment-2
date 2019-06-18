@@ -1,6 +1,7 @@
 import React from 'react';
 import AboutText from './AboutText';
 import MessagesPage from './MessagesPage';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default class App extends React.Component {
 
@@ -34,14 +35,14 @@ export default class App extends React.Component {
         let customHeader = (
             <div>
                 <div>
-                    <h1 id="page_title">CPSC436I Message Logger</h1>
+                    <h1 className="bounceIn">CPSC436I Message Logger</h1>
                     <hr></hr>
                     <link rel="stylesheet" type="text/css" href="index.css" />
 
                 </div>
                 <header>
                     <nav>
-                        <span><button className="nav_button" id="homeButtom" onClick={this._updateHomePage}>HOME</button>|<button className="nav_button" id="aboutButton" onClick={this._updateAboutPage}>ABOUT</button></span>
+                        <span><button type="button" className="btn btn-info" onClick={this._updateHomePage}>HOME</button>|<button type="button" class="btn btn-success"  onClick={this._updateAboutPage}>ABOUT</button></span>
                     </nav>
                 </header>
                 <hr></hr>
