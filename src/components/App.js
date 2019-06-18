@@ -8,20 +8,9 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isHomePage: true,
-            apiResponse: "" ,
         entered: false};
         this._updateHomePage = this._updateHomePage.bind(this);
         this._updateAboutPage = this._updateAboutPage.bind(this);
-    }
-    
-    callAPI() {
-        fetch("http://localhost:9000/testAPI")
-            .then(res => res.text())
-            .then(res => this.setState({ apiResponse: res }));
-    }
-    
-    componentWillMount() {
-        this.callAPI();
     }
 
     _updateHomePage = () => {
@@ -63,7 +52,6 @@ export default class App extends React.Component {
 
         return (
             <div>
-            <p className="App-intro">;{this.state.apiResponse}</p>
                 <div>{customHeader}</div>
                 <div>{body}</div>
             </div>

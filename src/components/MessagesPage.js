@@ -8,11 +8,18 @@ export default class MessagesPage extends React.Component {
         super();
         this.state = {
             numberOfMessagesDisplayed: 10,
-            scrollingMessages: true
+            scrollingMessages: true,
+            rerenderMessageList: false
         };
         this._collapseMessages = this._collapseMessages.bind(this);
         this._expandMessages = this._expandMessages.bind(this);
         this._toggleScroll = this._toggleScroll.bind(this);
+    }
+
+    rerenderMessageList(){
+        let state = this.state.rerenderMessageList;
+        this.setState({rerenderMessageList: !state});
+        console.log("nooo");
     }
 
     _collapseMessages() {
@@ -20,7 +27,7 @@ export default class MessagesPage extends React.Component {
     }
 
     _expandMessages() {
-        this.setState({ numberOfMessagesDisplayed: 100 });
+        this.setState({ numberOfMessagesDisplayed: 50 });
     }
 
     _toggleScroll() {
@@ -35,24 +42,24 @@ export default class MessagesPage extends React.Component {
         let scrollButton;
 
         if (this.state.scrollingMessages){
-            scrollButton = (<button id="stop_movement" className="button_stuff" onClick={this._toggleScroll}> Stop Scroll
+            scrollButton = (<button id="stop_movement" className="btn btn-secondary btn-sm" onClick={this._toggleScroll}> Stop Scroll
             </button>);
         } else {
-            scrollButton = (<button id="stop_movement" className="button_stuff" onClick={this._toggleScroll}> Resume Scroll
+            scrollButton = (<button id="stop_movement" className="btn btn-secondary btn-sm" onClick={this._toggleScroll}> Resume Scroll
             </button>);
         }
 
         let expandCollapseButton;
         if (this.state.numberOfMessagesDisplayed === 10){
-            expandCollapseButton = (<button id="expand_button" className="button_stuff" onClick={this._expandMessages}> Expand</button>);
+            expandCollapseButton = (<button id="expand_button" className="btn btn-secondary btn-sm" onClick={this._expandMessages}> Expand</button>);
         } else {
-            expandCollapseButton = (<button id="collapse_button" className="button_stuff" onClick={this._collapseMessages}> Collapse</button>);
+            expandCollapseButton = (<button id="collapse_button" className="btn btn-secondary btn-sm" onClick={this._collapseMessages}> Collapse</button>);
         }
-
+        
         return (<div>
-            <MessageForm />
+            <MessageForm update={() => this.rerenderMessageList()}/>
             <hr></hr>
-            <MessageList numberOfMessages={this.state.numberOfMessagesDisplayed} scrollingMessages={this.state.scrollingMessages} />
+            <MessageList update={() => this.rerenderMessageList()} numberOfMessages={this.state.numberOfMessagesDisplayed} scrollingMessages={this.state.scrollingMessages} />
             <div>
                 {scrollButton}
                 {expandCollapseButton}

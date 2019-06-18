@@ -4,11 +4,7 @@ import Messages from './Messages';
 import { addMessage } from '../actions';
 
 class MessageList extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
-
+    
     callAPI() {
         fetch("http://localhost:9000/messages", {
             headers: {
@@ -28,13 +24,13 @@ class MessageList extends React.Component {
     }
 
     render() {
-        const header = (<h3> Message Log</h3>);
+        const header = (<h3 className="message_log_title"> Message Log</h3>);
         return (<div>
             {header}
             <ul className ="message_list">
                 <Messages messages={this.props.messages} numberOfMessages={this.props.numberOfMessages} moveMessages={this.props.scrollingMessages} />
             </ul>
-        </div>)
+        </div>);
     }
 }
 

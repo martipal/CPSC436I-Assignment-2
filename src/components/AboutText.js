@@ -8,7 +8,7 @@ export class AboutText extends React.Component {
         const aboutText = (
             <div>
                 <p>These webpages were created by Martin Palanca, a 4th Year BCS Computer Science student, as part of Assignment 1 for the <i>CPSC436I (Introduction to Industry Skills)</i>
-                    course at the University of British Columbia. The primary functionality of this site allows users to:<br></br>
+                    course at the University of British Columbia. The technology stack for this application includes React JS, React-Redux, and Node/Express. The primary functionality of this site allows users to:<br></br>
                 
                         <b>1) Add custom messages into a Message Log </b>. <br></br>
                         Messages are ordered from <i>top to bottom</i> from <i>newest
