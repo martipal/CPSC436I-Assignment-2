@@ -63,6 +63,8 @@ h2{
   width:100%;
   align-content:center;
   animation:fade 2s;
+  margin-left:0px;
+  margin-right:0px;
 }
 
 
