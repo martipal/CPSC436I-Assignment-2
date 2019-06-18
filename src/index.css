@@ -23,32 +23,112 @@ h2{
   overflow:scroll;
   overflow-x:visible;
   height:300px;
-  animation: fadeIn 0.5s linear;
+  animation: slide 3s linear;
   animation-fill-mode: both;
 }
 
-@-webkit-keyframes fadeIn {
+
+@keyframes slide {
+  0% {left:100}
+  
+  100% { left: 0; }
+}
+
+@keyframes fadeIn {
   0% {
     opacity: 0;
-    top: 100px;
+    margin-top: 300px;
   }
   50%{
-    opacity: 0.2;
-    top: 30px;
+    opacity: 0.4;
+    margin-top: 150px;
   }
   75% {
-    opacity: 0.5;
-    top: 70px;
+    opacity: 0.8;
+    margin-top: 70px;
   }
   100% {
     opacity: 1;
-    top:0px;
   }
 }
 
 
 .message_list::-webkit-scrollbar { 
   display: none; 
+}
+
+.container{
+  background-color:#c5ba7c;
+  flex-direction:column;
+  width:100%;
+  align-content:center;
+  animation:fade 2s;
+}
+
+
+
+.welcomeContainer{
+  display:flex;
+  flex-direction:column;
+  height:100vh;
+  width:inherit;
+  background-color:#c5ba7c;
+  align-content:center;
+}
+
+.welcomeInfo{
+  top:30%;
+  left:23%;
+  position:absolute;
+  width:100vh;
+  text-align:center;
+  margin:auto;
+  
+}
+
+.website_title{
+  color:rgb(110, 110, 110);
+  font-family:monospace;
+  font-weight:bold;
+  animation: fade 2s;
+  font-size:40px;
+}
+
+.website_info{
+  color:white;
+  animation:fade 2.4s;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.enter_button{
+  font-family: monospace;
+ animation:spin 1s;
+ width:300px;
+ border:none;
+ background-color:rgb(110, 110, 110);
+ color:white;
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+@keyframes fade{
+  0%{
+    opacity: 0;
+  }
+  25%{
+    opacity:0.25;
+  }
+  70%{
+    opacity:0.75;
+  }
+  100%{
+    opacity:1;
+  }
+
 }
 
 .nav_button:hover{
@@ -63,11 +143,21 @@ hr{
   background-color: black;
 }
 
-#input_field{
-  color: lightslategrey;
-  text-align: center;
-  width: 267px;
+.indivMessage{
+  font-family:arial black;
+  font-size:25px;
+  animation:fade;
 }
+
+
+.input_field{
+  color:rgb(77, 75, 75);
+  background-color:silver;
+  border:none;
+  text-align: center;
+  width: 400px;
+}
+
 
 .button_stuff{
   background-color:white;
@@ -123,7 +213,7 @@ li{
 }
 
 li:hover{
-  color:red;
+  color:white;
   font-size:40px;
 }
 

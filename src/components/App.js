@@ -8,7 +8,8 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isHomePage: true,
-            apiResponse: "" };
+            apiResponse: "" ,
+        entered: false};
         this._updateHomePage = this._updateHomePage.bind(this);
         this._updateAboutPage = this._updateAboutPage.bind(this);
     }
@@ -31,18 +32,12 @@ export default class App extends React.Component {
         this.setState({ isHomePage: false });
     }
 
-    render() {
+    renderPage() {
         let customHeader = (
             <div>
-                <div>
-                    <h1 className="bounceIn">CPSC436I Message Logger</h1>
-                    <hr></hr>
-                    <link rel="stylesheet" type="text/css" href="index.css" />
-
-                </div>
                 <header>
                     <nav>
-                        <span><button type="button" className="btn btn-info" onClick={this._updateHomePage}>HOME</button>|<button type="button" class="btn btn-success"  onClick={this._updateAboutPage}>ABOUT</button></span>
+                        <span><button type="button" className="btn btn-secondary btn-sm" onClick={this._updateHomePage}>HOME</button>|<button type="button" className="btn btn-secondary btn-sm"  onClick={this._updateAboutPage}>ABOUT</button></span>
                     </nav>
                 </header>
                 <hr></hr>
@@ -75,6 +70,28 @@ export default class App extends React.Component {
             
         );
 
+    }
+
+    renderWelcome(){
+        return (<div className="welcomeContainer">
+            <div className="welcomeInfo">
+            <h1 className="website_title">CPSC436I Message Logger</h1>
+            <h4 className="website_info">Developed by Martin Palanca as part of the Introduction to Industry Skills (CPSC436I) course at the University of British Columbia</h4>
+            <button className="enter_button" onClick={() => this.enterSite()}>Start</button>
+            </div>
+        </div>);
+    }
+
+    enterSite(){
+        this.setState({entered:true});
+    }
+
+    render(){
+        if (this.state.entered === true){
+            return <div className="container">{this.renderPage()}</div>;
+        } else {
+            return <div className="container">{this.renderWelcome()}</div>;
+        }
     }
 }
 
