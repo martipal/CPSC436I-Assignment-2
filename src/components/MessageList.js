@@ -6,13 +6,13 @@ import { addMessage } from '../actions';
 class MessageList extends React.Component {
     
     callAPI() {
+        // promises > timeout
         fetch("http://localhost:9000/messages", {
             headers: {
                 'Content-Type':'application/json',
                 'Accept':'application/json'
             }
         }).then(response => response.json()).then(data => {
-            console.log(data);
             for (let i = data.length-1; i >=0; i--){
                 this.props.addMessage(data[i].message);
             }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addMessage } from '../actions';
+import { addMessage, clearMessages } from '../actions';
 
 class MessageForm extends React.Component {
     constructor() {
@@ -20,12 +20,17 @@ class MessageForm extends React.Component {
     }
 
     clearMessages() {
+        // make these calls asynchronous - 
         const options = {
-            method: 'POST'
+            method: 'DELETE' // this should be delete 
         };
 
-        fetch("http://localhost:9000/messages/clearAll", options);
-        this.reload();
+        fetch("http://localhost:9000/messages/clearAll", options).then(response => response.json()).then(data => {
+            if (data === "deleted"){
+                this.props.clearMessages();
+                console.log(this.props.messages);
+            }
+        });
     }
 
     sendMessageWithPOST(newMessage) {
@@ -37,8 +42,9 @@ class MessageForm extends React.Component {
         body: JSON.stringify({ "message": newMessage })
     };
 
-    fetch("http://localhost:9000/messages", options);
-    this.render();
+    fetch("http://localhost:9000/messages", options).then(response => response.json()).then(data => {
+        this.props.addMessage(data.message);
+    });
 }
 
 
@@ -70,4 +76,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { addMessage })(MessageForm);
+export default connect(mapStateToProps, { addMessage, clearMessages })(MessageForm);

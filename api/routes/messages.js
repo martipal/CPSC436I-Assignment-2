@@ -29,7 +29,7 @@ router.post('/', function(req,res,next){
 });
 
 /* CLEAR messages */
-router.post('/clearAll', function(req,res,next){
+router.delete('/clearAll', function(req,res,next){
     messages=[];
 });
 
