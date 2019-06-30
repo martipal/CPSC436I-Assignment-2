@@ -31,6 +31,7 @@ router.post('/', function(req,res,next){
 /* CLEAR messages */
 router.delete('/clearAll', function(req,res,next){
     messages=[];
+    res.send(JSON.stringify("deleted"));
 });
 
 

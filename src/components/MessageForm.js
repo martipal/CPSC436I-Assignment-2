@@ -22,13 +22,13 @@ class MessageForm extends React.Component {
     clearMessages() {
         // make these calls asynchronous - 
         const options = {
-            method: 'DELETE' // this should be delete 
+            method: 'DELETE'
         };
 
         fetch("http://localhost:9000/messages/clearAll", options).then(response => response.json()).then(data => {
             if (data === "deleted"){
                 this.props.clearMessages();
-                console.log(this.props.messages);
+                console.log(data);
             }
         });
     }
