@@ -12,6 +12,9 @@ class MessageForm extends React.Component {
         event.preventDefault();
         let newMessage = event.target.text.value.toString();
         let link = event.target.link.value.toString();
+        if (link === "default"){
+            link = null;
+        }
         console.log(link);
         this.sendMessageWithPOST(JSON.stringify({"message":
             newMessage,

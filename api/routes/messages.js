@@ -1,28 +1,14 @@
 var express = require("express");
 var router = express.Router();
-
 const mongoose = require('mongoose');
 const Message = require('../models/message.js');
 
 mongoose.connect('mongodb+srv://m001-student:m001-mongodb-basics@sandbox-iemj8.mongodb.net/test?retryWrites=true&w=majority',
     { useNewUrlParser: true });
 
-var messages = [
-    { "message": "Most recently added message" },
-    { "message": "best beaches in vancouver" },
-    { "message": "Where to go camping?" },
-    { "message": "Indonesia" },
-    { "message": "Hello!" },
-    { "message": "Learn React" },
-    { "message": "Yes" },
-    { "message": "@#()!" },
-    { "message": "12345" },
-    { "message": "Oldest message" }
-];
-
 /* GET messages listing. */
 router.get('/', function (req, res) {
-    Message.find().exec().then(docs => {
+    Message.find().sort({ createdAt: 'descending' }).exec().then(docs => {
         console.log(docs);
         res.status(200).json(docs);
     }).catch(err => {
@@ -33,10 +19,11 @@ router.get('/', function (req, res) {
     });
 });
 
-router.get('/withLinks', function(req,res){
+/* GET messages with links only. */
+router.get('/withLinks', function (req, res) {
     Message.find({
-        link: {$ne: "default"}
-    }).exec().then(docs => {
+        link: { $ne: null }
+    }).sort({ createdAt: 'descending' }).exec().then(docs => {
         console.log(docs);
         res.status(200).json(docs);
     }).catch(err => {
@@ -76,13 +63,9 @@ router.delete('/clearAll', function (req, res, next) {
     }).catch(err => {
         console.log(err);
         res.status(500).json({
-            error:err
+            error: err
         })
     })
 });
-
-
-
-
 
 module.exports = router;

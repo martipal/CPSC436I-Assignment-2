@@ -16,7 +16,7 @@ export default class Messages extends React.Component {
         for (var i =0; i <messagesToDisplay; i++){
             let messageObject = this.props.messages[i];
             let message = messageObject.message;
-            let link = messageObject.link.toString();
+            let link = messageObject.link? messageObject.link.toString(): null;
             let linkUrl = createLink(message, link);
             if (this.props.moveMessages){
                 messageList.push(<li className="indivMessage"
