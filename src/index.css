@@ -184,6 +184,16 @@ hr{
   width: 400px;
 }
 
+.link_select{
+  text-align:center;
+  color:rgb(77, 75, 75);
+  background-color:silver;
+  border:none;
+  text-align: center;
+  width: 200px;
+  margin-bottom:10px;
+}
+
 
 .button_stuff{
   background-color:white;

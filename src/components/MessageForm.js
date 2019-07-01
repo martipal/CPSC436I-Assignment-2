@@ -11,8 +11,11 @@ class MessageForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         let newMessage = event.target.text.value.toString();
-        this.sendMessageWithPOST(newMessage);
-        this.reload();
+        let link = event.target.link.value.toString();
+        console.log(link);
+        this.sendMessageWithPOST(JSON.stringify({"message":
+            newMessage,
+            "link":link}));
     }
 
     reload() {
@@ -26,10 +29,8 @@ class MessageForm extends React.Component {
         };
 
         fetch("http://localhost:9000/messages/clearAll", options).then(response => response.json()).then(data => {
-            if (data === "deleted"){
-                this.props.clearMessages();
-                console.log(data);
-            }
+            this.props.clearMessages();
+            console.log(data);
         });
     }
 
@@ -39,11 +40,13 @@ class MessageForm extends React.Component {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ "message": newMessage })
+        body: newMessage
     };
 
     fetch("http://localhost:9000/messages", options).then(response => response.json()).then(data => {
-        this.props.addMessage(data.message);
+        this.props.addMessage({
+            "message":data.message,
+            "link":data.link});
     });
 }
 
@@ -57,6 +60,12 @@ class MessageForm extends React.Component {
                         <input className="input_field" ref={input => this.inputField = input} name="text" type="text" defaultValue="Insert Message Here..." onFocus={() => this.inputField.value = ""} />
                     </label>
                     <br />
+                    <select className="link_select" name="link">
+                    <option value="default" default>Link your message to...</option>
+    <option value="google" default>Google</option>
+    <option value="youtube">YouTube</option>
+    <option value="urbandictionary">UrbanDictionary</option>
+  </select>
                     <input className="btn btn-secondary btn-sm btn-block" type="submit" value="Submit" />
                     <input type="reset" className="btn btn-secondary btn-sm btn-block" value="Clear Form" />
                 </form>
