@@ -4,10 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var testAPIRouter = require("./routes/testAPI");
-var messagesRouter = require("./routes/messages");
+var indexRouter = require('./api/routes/index');
+var usersRouter = require('./api/routes/users');
+var testAPIRouter = require("./api/routes/testAPI");
+var messagesRouter = require("./api/routes/messages");
 
 var app = express();
 
@@ -28,11 +28,7 @@ app.use('/users', usersRouter);
 app.use('/messages', messagesRouter);
 
 if (process.env.NODE_ENV === 'production'){
-  app.use(express.static('client/build'));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-  });
+  
 }
 
 // catch 404 and forward to error handler
