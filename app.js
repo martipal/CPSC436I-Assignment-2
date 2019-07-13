@@ -4,15 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
-var indexRouter = require('./api/routes/index');
-var usersRouter = require('./api/routes/users');
-var testAPIRouter = require("./api/routes/testAPI");
-var messagesRouter = require("./api/routes/messages");
+var indexRouter = require('./app/routes/index');
+var usersRouter = require('./app/routes/users');
+var testAPIRouter = require("./app/routes/testAPI");
+var messagesRouter = require("./app/routes/messages");
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
