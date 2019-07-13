@@ -27,6 +27,10 @@ app.use('/testAPI', testAPIRouter);
 app.use('/users', usersRouter);
 app.use('/messages', messagesRouter);
 
+app.get('/', function(req, res){
+  res.render("error");
+});
+
 if (process.env.NODE_ENV === 'production'){
   app.use(express.static('client/build'));
 
