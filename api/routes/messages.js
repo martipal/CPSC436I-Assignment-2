@@ -7,7 +7,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://m001-student:m001-mon
     { useNewUrlParser: true });
 
 /* GET messages listing. */
-router.get('/', function (req, res) {
+router.get('/messages', function (req, res) {
     Message.find().sort({ createdAt: 'descending' }).exec().then(docs => {
         console.log(docs);
         res.status(200).json(docs);
@@ -35,7 +35,7 @@ router.get('/withLinks', function (req, res) {
 });
 
 /* POST a message. */
-router.post('/', function (req, res, next) {
+router.post('/messages', function (req, res, next) {
     const message = new Message({
         _id: new mongoose.Types.ObjectId(),
         message: req.body.message,

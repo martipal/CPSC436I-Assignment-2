@@ -33,7 +33,6 @@ class MessageForm extends React.Component {
 
         fetch("http://localhost:9000/messages/clearAll", options).then(response => response.json()).then(data => {
             this.props.clearMessages();
-            console.log(data);
         });
     }
 
