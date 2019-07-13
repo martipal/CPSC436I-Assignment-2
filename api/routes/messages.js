@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const mongoose = require('mongoose');
-const Message = require('../models/message.js');
+const Message = require('../models/message.js.js');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://m001-student:m001-mongodb-basics@sandbox-iemj8.mongodb.net/test?retryWrites=true&w=majority',
     { useNewUrlParser: true });
