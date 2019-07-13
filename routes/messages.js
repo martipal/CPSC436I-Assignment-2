@@ -7,7 +7,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://m001-student:m001-mon
     { useNewUrlParser: true });
 
 /* GET messages listing. */
-router.get('/messages', function (req, res) {
+router.get('/', function (req, res) {
     Message.find().sort({ createdAt: 'descending' }).exec().then(docs => {
         console.log(docs);
         res.status(200).json(docs);
