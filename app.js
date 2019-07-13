@@ -28,7 +28,7 @@ app.use('/users', usersRouter);
 app.use('/messages', messagesRouter);
 
 app.get('/', function(req, res){
-  res.render("error");
+  res.render("index");
 });
 
 if (process.env.NODE_ENV === 'production'){
