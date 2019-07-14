@@ -4,40 +4,46 @@ import Messages from './Messages';
 import { addMessage, clearMessages } from '../actions';
 
 class MessageList extends React.Component {
-    
+
     callAPI() {
         // promises > timeout
-        fetch("http://localhost:4000/messages", {
+        fetch("http://localhost:3001/messages", {
             headers: {
-                'Content-Type':'application/json',
-                'Accept':'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             }
         }).then(response => response.json()).then(data => {
-            for (let i = data.length-1; i >=0; i--){
-                let link = data[i].link ? data[i].link.toString(): null;
-                this.props.addMessage(({"message":data[i].message.toString(),
-                "link":link}));
+            for (let i = data.length - 1; i >= 0; i--) {
+                let link = data[i].link ? data[i].link.toString() : null;
+                this.props.addMessage(({
+                    "message": data[i].message.toString(),
+                    "link": link
+                }));
             }
         });
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.callAPI();
     }
 
-    getLinkedMessages(){
-        document.getElementById("toggleLinkButton").value="Show All";
-        fetch("http://localhost:4000/messages/withLinks", {
+    getLinkedMessages() {
+        document.getElementById("toggleLinkButton").value = "Show All";
+
+        fetch("http://localhost:3001/messages/withLinks", {
+            mode: 'no-cors',
             headers: {
-                'Content-Type':'application/json',
-                'Accept':'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             }
         }).then(response => response.json()).then(data => {
             console.log(data);
             this.props.clearMessages();
-            for (let i = data.length-1; i >=0; i--){
-                this.props.addMessage(({"message":data[i].message.toString(),
-                "link":data[i].link.toString()}));
+            for (let i = data.length - 1; i >= 0; i--) {
+                this.props.addMessage(({
+                    "message": data[i].message.toString(),
+                    "link": data[i].link.toString()
+                }));
             }
         });
     }
@@ -47,7 +53,7 @@ class MessageList extends React.Component {
         return (<div>
             {header}
             <button id="toggleLinkButton" className="btn btn-secondary btn-sm" onClick={() => this.getLinkedMessages()}>Show Only Messages With Links</button>
-            <ul className ="message_list">
+            <ul className="message_list">
                 <Messages messages={this.props.messages} numberOfMessages={this.props.numberOfMessages} moveMessages={this.props.scrollingMessages} />
             </ul>
         </div>);

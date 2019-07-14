@@ -28,10 +28,11 @@ class MessageForm extends React.Component {
     clearMessages() {
         // make these calls asynchronous - 
         const options = {
-            method: 'DELETE'
+            method: 'DELETE',
+            mode: 'no-cors'
         };
 
-        fetch("http://localhost:3000/messages/clearAll", options).then(response => response.json()).then(data => {
+        fetch("http://localhost:3001/messages/clearAll", options).then(response => response.json()).then(data => {
             this.props.clearMessages();
             console.log(data);
         });
@@ -40,14 +41,16 @@ class MessageForm extends React.Component {
     sendMessageWithPOST(newMessage) {
     const options = {
         method: 'POST',
+        mode:'no-cors',
         headers : { 
             'Content-Type': 'application/json',
             'Accept': 'application/json'
            },
         body: newMessage
+        
     };
 
-    fetch("http://localhost:3000/messages", options).then(response => response.json()).then(data => {
+    fetch("http://localhost:/messages", options).then(response => response.json()).then(data => {
         this.props.addMessage({
             "message":data.message,
             "link":data.link});
