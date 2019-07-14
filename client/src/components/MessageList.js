@@ -7,7 +7,7 @@ class MessageList extends React.Component {
     
     callAPI() {
         // promises > timeout
-        fetch("http://localhost:3000/messages", {
+        fetch("http://localhost:4000/messages", {
             headers: {
                 'Content-Type':'application/json',
                 'Accept':'application/json'
@@ -27,7 +27,7 @@ class MessageList extends React.Component {
 
     getLinkedMessages(){
         document.getElementById("toggleLinkButton").value="Show All";
-        fetch("http://localhost:3000/messages/withLinks", {
+        fetch("http://localhost:4000/messages/withLinks", {
             headers: {
                 'Content-Type':'application/json',
                 'Accept':'application/json'

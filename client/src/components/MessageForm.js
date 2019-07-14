@@ -40,9 +40,10 @@ class MessageForm extends React.Component {
     sendMessageWithPOST(newMessage) {
     const options = {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers : { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+           },
         body: newMessage
     };
 
