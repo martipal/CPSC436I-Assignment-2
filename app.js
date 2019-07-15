@@ -28,14 +28,6 @@ app.set('view engine', 'jade');
 
 // ... other app.use middleware 
 app.use(express.static(path.join(__dirname, "client", "build")))
-
-// ...
-// Right before your app.listen(), add this:
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
-
-
 app.use(logger('dev'));
 app.use(cors());
 app.use(express.json());
@@ -64,11 +56,5 @@ module.exports = app;
 
 
 
-if (process.env.NODE_ENV === 'production'){
-  app.use(express.static('client/build'));
 
-  app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname,'client','build', 'index.html'));
-  });
-}
 
