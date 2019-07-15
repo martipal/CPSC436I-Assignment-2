@@ -72,11 +72,11 @@ class MessageForm extends React.Component {
                         <option value="youtube">YouTube</option>
                         <option value="urbandictionary">UrbanDictionary</option>
                     </select>
-                    <input className="btn btn-secondary btn-sm btn-block" type="submit" value="Submit" />
-                    <input type="reset" className="btn btn-secondary btn-sm btn-block" value="Clear Form" />
+                    <input className="actionButton btn btn-secondary btn-sm btn-block" type="submit" value="Submit" />
+                    <input type="reset" className="actionButton btn btn-secondary btn-sm btn-block" value="Clear Form" />
                 </form>
                 <div className="clear_button">
-                    <button className="btn btn-secondary btn-sm btn-block" onClick={() => this.clearMessages()}>Clear Message Log
+                    <button className="actionButton btn btn-secondary btn-sm btn-block" onClick={() => this.clearMessages()}>Clear Message Log
         </button>
                 </div>
             </div>);

@@ -60,10 +60,11 @@ h2{
 .container{
   background-color:#c5ba7c;
   flex-direction:column;
-  width:400px;
+  width:inherit;
   align-content:center;
-  margin: 0;
   padding:0;
+  margin-top:20px;
+  margin-bottom:20px;
 }
 
 .button{
@@ -113,6 +114,10 @@ html{
   animation:fade 2.4s;
   font-size: 20px;
   margin-bottom: 30px;
+}
+
+.action_button{
+  width:400px;
 }
 
 .enter_button{
