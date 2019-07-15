@@ -11,6 +11,10 @@ var messagesRouter = require("./routes/messages");
 
 var app = express();
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use('/', indexRouter);
 app.use('/testAPI', testAPIRouter);
 app.use('/users', usersRouter);
@@ -20,9 +24,6 @@ app.use('/messages', messagesRouter);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // ... other app.use middleware 
@@ -70,3 +71,4 @@ if (process.env.NODE_ENV === 'production'){
     res.sendFile(path.join(__dirname,'client','build', 'index.html'));
   });
 }
+
