@@ -12,13 +12,13 @@ class MessageForm extends React.Component {
         event.preventDefault();
         let newMessage = event.target.text.value.toString();
         let link = event.target.link.value.toString();
-        if (link === "default"){
+        if (link === "default") {
             link = null;
         }
-        console.log(link);
-        this.sendMessageWithPOST(JSON.stringify({"message":
-            newMessage,
-            "link":link}));
+        this.sendMessageWithPOST({
+            "message": newMessage,
+            "link": link
+        });
     }
 
     reload() {
@@ -26,36 +26,35 @@ class MessageForm extends React.Component {
     }
 
     clearMessages() {
-        // make these calls asynchronous - 
         const options = {
-            method: 'DELETE',
-            mode: 'no-cors'
+            method: 'DELETE'
         };
 
-        fetch("http://localhost:3001/messages/clearAll", options).then(response => response.json()).then(data => {
+        fetch("/messages/clearAll", options).then(response => {
+            return response.json();
+        }).then(data => {
             this.props.clearMessages();
             console.log(data);
         });
     }
 
     sendMessageWithPOST(newMessage) {
-    const options = {
-        method: 'POST',
-        mode:'no-cors',
-        headers : { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-           },
-        body: newMessage
-        
-    };
+        console.log(newMessage);
+        let options = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newMessage)
+        };
 
-    fetch("http://localhost:/messages", options).then(response => response.json()).then(data => {
-        this.props.addMessage({
-            "message":data.message,
-            "link":data.link});
-    });
-}
+        fetch("/messages", options).then(response => response.json()).then(data => {
+            this.props.addMessage({
+                "message": data.message,
+                "link": data.link
+            });
+        });
+    }
 
 
     render() {
@@ -68,11 +67,11 @@ class MessageForm extends React.Component {
                     </label>
                     <br />
                     <select className="link_select" name="link">
-                    <option value="default" default>Link your message to...</option>
-    <option value="google" default>Google</option>
-    <option value="youtube">YouTube</option>
-    <option value="urbandictionary">UrbanDictionary</option>
-  </select>
+                        <option value="default" default>Link your message to...</option>
+                        <option value="google" default>Google</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="urbandictionary">UrbanDictionary</option>
+                    </select>
                     <input className="btn btn-secondary btn-sm btn-block" type="submit" value="Submit" />
                     <input type="reset" className="btn btn-secondary btn-sm btn-block" value="Clear Form" />
                 </form>

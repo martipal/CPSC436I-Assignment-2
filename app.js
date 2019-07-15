@@ -20,6 +20,11 @@ app.use('/messages', messagesRouter);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 // ... other app.use middleware 
 app.use(express.static(path.join(__dirname, "client", "build")))
 

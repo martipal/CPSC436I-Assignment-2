@@ -36,12 +36,17 @@ router.get('/withLinks', function (req, res) {
 
 /* POST a message. */
 router.post('/', function (req, res, next) {
-    const message = new Message({
+    console.log("here");
+    //console.log(req);
+    console.log(req.body);
+    console.log(req.headers);
+    const newMessage = new Message({
         _id: new mongoose.Types.ObjectId(),
         message: req.body.message,
         link: req.body.link
     })
-    message.save().then(result => {
+    console.log(message);
+    newMessage.save().then(result => {
         console.log(result);
         res.status(201).json({
             message: "Handling POST requests to /messages",
