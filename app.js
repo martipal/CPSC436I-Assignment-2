@@ -9,13 +9,14 @@ var usersRouter = require('./routes/users');
 var testAPIRouter = require("./routes/testAPI");
 var messagesRouter = require("./routes/messages");
 
+
 var app = express();
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', indexRouter);
+//app.use('/', indexRouter);
 app.use('/testAPI', testAPIRouter);
 app.use('/users', usersRouter);
 app.use('/messages', messagesRouter);
