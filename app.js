@@ -4,9 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var testAPIRouter = require("./routes/testAPI");
 var messagesRouter = require("./routes/messages");
 
 
@@ -16,9 +13,6 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//app.use('/', indexRouter);
-app.use('/testAPI', testAPIRouter);
-app.use('/users', usersRouter);
 app.use('/messages', messagesRouter);
 
 // view engine setup

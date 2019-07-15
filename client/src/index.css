@@ -60,13 +60,10 @@ h2{
 .container{
   background-color:#c5ba7c;
   flex-direction:column;
-  width:100hv;
+  width:400px;
   align-content:center;
-  width:60%;
-  margin-left:0px;
-  margin-top:20px;
-  margin-right:0px;
-  margin-bottom:20px;
+  margin: 0;
+  padding:0;
 }
 
 .button{
